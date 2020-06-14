@@ -1,0 +1,12 @@
+{
+  "name": "iframe-router",
+  "version": "0.0.0",
+  "description": "Routing library for a host-app to orchestrate micro-apps (micro frontends).",
+  "author": "webdevan",
+  "scripts": {
+    "start": "live-server src/index.html"
+  },
+  "dependencies": {
+    "live-server": "^1.2.1"
+  }
+}

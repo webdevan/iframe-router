@@ -1,0 +1,37 @@
+<ul>
+  <li><a href="/">home</a></li>
+  <li><a href="/order">order</a></li>
+  <li><a href="/user">user</a></li>
+</ul>
+
+<iframe id="root"></iframe>
+
+<script>
+  window.onpopstate = () => {
+    navigate(window.location.pathname);
+  };
+  
+  window.addEventListener('click', event => {
+    if (!event.target.pathname) return;
+    event.preventDefault();
+    navigate(event.target.pathname);
+    if (event.target.pathname === window.location.pathname) return false;
+    window.history.pushState({}, '', event.target.pathname);
+    return false;
+  });
+
+  const routes = {
+    '/': 'https://browse.example.com/index.html',
+    '/order': 'https://order.example.com/index.html',
+    '/user': 'https://profile.example.com/index.html',
+  };
+
+  const navigate = path => {
+    const oldIframe = document.querySelector('#root');
+    const newIframe = oldIframe.cloneNode();
+    newIframe.src = routes[path];
+    oldIframe.parentNode.replaceChild(newIframe, oldIframe);
+  };
+
+  navigate(window.location.pathname);
+</script>

@@ -1,37 +1,21 @@
 <ul>
   <li><a href="/">home</a></li>
-  <li><a href="/order">order</a></li>
-  <li><a href="/user">user</a></li>
+  <li><a href="/app1">app 1</a></li>
+  <li><a href="/app2">app 2</a></li>
+  <li><a href="/app3">app 3</a></li>
+  <li><a href="/app3/foo">app 3 / foo</a></li>
 </ul>
 
 <iframe id="root"></iframe>
 
 <script>
-  window.onpopstate = () => {
-    navigate(window.location.pathname);
-  };
-  
-  window.addEventListener('click', event => {
-    if (!event.target.pathname) return;
-    event.preventDefault();
-    navigate(event.target.pathname);
-    if (event.target.pathname === window.location.pathname) return false;
-    window.history.pushState({}, '', event.target.pathname);
-    return false;
-  });
-
   const routes = {
-    '/': 'https://browse.example.com/index.html',
-    '/order': 'https://order.example.com/index.html',
-    '/user': 'https://profile.example.com/index.html',
+    '/': 'http://127.0.0.1:8081/micro-apps/home.html',
+    '/error': 'http://127.0.0.1:8081/micro-apps/error.html',
+    '/app1': 'http://127.0.0.1:8081/micro-apps/app1.html',
+    '/app2': 'http://127.0.0.1:8081/micro-apps/app2.html',
+    '/app3': 'http://127.0.0.1:8081/micro-apps/app3.html',
   };
-
-  const navigate = path => {
-    const oldIframe = document.querySelector('#root');
-    const newIframe = oldIframe.cloneNode();
-    newIframe.src = routes[path];
-    oldIframe.parentNode.replaceChild(newIframe, oldIframe);
-  };
-
-  navigate(window.location.pathname);
 </script>
+
+<script src="http://127.0.0.1:8081/iframe-router-host.js"></script>

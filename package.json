@@ -4,7 +4,7 @@
   "description": "Routing library for a host-app to orchestrate micro-apps (micro frontends).",
   "author": "webdevan",
   "scripts": {
-    "start": "live-server src/index.html"
+    "start": "live-server --port=8081 --no-browser src/ & live-server --port=8080 src/index.html"
   },
   "dependencies": {
     "live-server": "^1.2.1"
